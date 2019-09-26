@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Home from './home.jsx';
+import Home from './home.js';
 import {BrowserRouter as Router,Route} from 'react-router-dom';
 import Frontend from './layout/forntend';
 

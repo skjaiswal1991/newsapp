@@ -1,47 +1,49 @@
 import React, { Component } from 'react';
 import Sidebar from './commen/sidebar';
+import {Link} from 'react-router-dom';
+import Sliderbanner from './commen/sliderbanner'
 
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = { posts:'' }
     }
+
+    // componentWillMount(){
+    //     fetch('http://news4t.com/wp-json/wp/v2/posts?per_page=5&_embed')
+    //     .then(response => response.json())
+    //     .then((res)=>{
+    //             this.setState({posts:res});
+    //     })
+    // }
     render() { 
+
+        const { posts } = this.state;
+        //  console.log(posts);
+        //  console.log(posts[0]._embedded);
+        //  const slid =  posts.map(p=>{
+        //  console.log(p);
+        // })
+
+        // const slider = posts.length > 0 ? (
+        //                 posts.map( post =>(
+        //                     <a herf='/'>link</a>
+        //                     // <Link to='/dgdfg'>
+        //                     //     {/* <img src={post._embedded['wp:featuredmedia']['0'].source_url} alt={post.title}/> */}
+        //                     //     {/* {post.title} */}</Link>
+        //                 ))
+        //                 ): 
+        //                 (
+        //                     <p>Loader</p>
+        //                 )
         return ( 
 
             <React.Fragment>
+               
             <section className="af-blocks">
             <div className="container af-main-banner default-section-slider">
                 <div className="row">
-                    <div className="banner-exclusive-posts-wrapper clearfix">
-                        <div className="exclusive-posts">
-                            <div className="exclusive-now primary-color">
-                                <div className="alert-spinner">
-                                    <div className="double-bounce1"></div>
-                                    <div className="double-bounce2"></div>
-                                </div>
-                                <strong>Flash Story</strong>
-                            </div>
-                            <div className="exclusive-slides" dir="ltr">
-                                <div className='marquee flash-slide-left' data-speed='80000' data-gap='0' data-duplicated='true' data-direction='left'>
-                                    <a href="http://www.news4t.com/spicejet-eyes-rs-71000-cr-airbus-deal-chairman-ajay-singh-reveals-01649999/">
-                                        <img src="http://www.news4t.com/wp-content/uploads/2019/09/0521_ajay_singh_spicejet_t.jpg" alt="एविएशन / स्पाइसजेट 100 एयरबस खरीद सकती है, इनकी वैल्यू 71000 करोड़ रुपए होगी"/>
-                                        एविएशन / स्पाइसजेट 100 एयरबस खरीद सकती है, इनकी वैल्यू 71000 करोड़ रुपए होगी </a>
-                                    <a href="http://www.news4t.com/bhakti-motivational-story-inspirational-story-story-about-devotion-prerak-prasang-01649989/">
-                                        <img src="http://www.news4t.com/wp-content/uploads/2019/09/0521_meditation_cover_0.jpg" alt="कथा / सच्चा सुख भगवान की निस्वार्थ भक्ति में है, जहां स्वार्थ होगा वहां दुख भी होगा"/>
-                                        कथा / सच्चा सुख भगवान की निस्वार्थ भक्ति में है, जहां स्वार्थ होगा वहां दुख भी होगा </a>
-                                    <a href="http://www.news4t.com/dark-theme-feature-rolled-out-for-gmail-app-it-will-take-more-than-15-days-to-fully-imple-01649997/">
-                                        <img src="http://www.news4t.com/wp-content/uploads/2019/09/0521_miui_11_1569316533974.jpg" alt="नया फीचर / जीमेल ऐप के लिए जारी हुआ डार्क थीम फीचर, पूरी तरह से लागू होने में लगेगा 15 दिन का समय"/>
-                                        नया फीचर / जीमेल ऐप के लिए जारी हुआ डार्क थीम फीचर, पूरी तरह से लागू होने में लगेगा 15 दिन का समय </a>
-                                    <a href="http://www.news4t.com/pitru-paksha-2019-pitru-paksha-kab-se-hai-shraddha-paksha-2019-01649863/">
-                                        <img src="http://www.news4t.com/wp-content/uploads/2019/09/0521_pitru_paksha_18_new.jpg" alt="धर्म / 27 को पितृ पक्ष की चतुर्दशी तिथि, इस दिन दुर्घटना में मृत लोगों का होता है श्राद्ध"/>
-                                        धर्म / 27 को पितृ पक्ष की चतुर्दशी तिथि, इस दिन दुर्घटना में मृत लोगों का होता है श्राद्ध </a>
-                                    <a href="http://www.news4t.com/pixel-3a-and-3a-xl-get-new-android-10-update-01649963/">
-                                        <img src="http://www.news4t.com/wp-content/uploads/2019/09/0521_pixel_3a_and_3a_xl_get_new_android_10_update_1.jpg" alt="लेटेस्ट एंड्रॉयड / पिक्सल 3a और 3a XL के लिए आया एंड्रॉयड 10 का अपडेट, सेटिंग में जाकर होगा इन्स्टॉल"/>
-                                        लेटेस्ट एंड्रॉयड / पिक्सल 3a और 3a XL के लिए आया एंड्रॉयड 10 का अपडेट, सेटिंग में जाकर होगा इन्स्टॉल </a></div>
-                            </div>
-                        </div>
-                    </div>
+                        <Sliderbanner></Sliderbanner>
                     <div className="for-main-row">
                         <div className="main-story-wrapper col-sm-6">
                             <h4 className="header-after1">
@@ -1367,7 +1369,7 @@ class Home extends Component {
                         </div>
                     </main>
                 </div>
-                <Sidebar></Sidebar>
+                {/* <Sidebar></Sidebar> */}
             </section>
         </div>
     <div className="af-main-banner-latest-posts grid-layout">

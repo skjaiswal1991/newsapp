@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom'
 
 class Header extends Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = { catlist:'' }
+    }
+
+    async componentDidMount(){
+        await fetch('http://news4t.com/wp-json/wp/v2/categories')
+        .then(response=> response.json())
+        .then((res)=>{
+                this.setState({catlist:res});
+        })
     }
     render() { 
+        const { catlist } = this.state;
         return ( 
+            
                 <div className="header-layout-1">
                 <div className="top-masthead">
                     <div className="container">
@@ -56,15 +67,17 @@ class Header extends Component {
                                         </span>
                                         <div className="menu main-menu">
                                             <ul id="primary-menu" className="menu">
-                                                <li id="menu-item-66173" className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-66173"><a href="http://www.news4t.com/category/latest-news/">latest News</a></li>
-                                                <li id="menu-item-66174" className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-66174"><a href="http://www.news4t.com/category/intertenment/">Entertainment</a></li>
-                                                <li id="menu-item-66175" className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-66175"><a href="http://www.news4t.com/category/sports/">Sports</a></li>
-                                                <li id="menu-item-66176" className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-66176"><a href="http://www.news4t.com/category/religion/">Religion</a></li>
-                                                <li id="menu-item-66177" className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-66177"><a href="http://www.news4t.com/category/tech-knowledge/">Tech knowledge</a></li>
-                                                <li id="menu-item-66178" className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-66178"><a href="http://www.news4t.com/category/utility/">Utility</a></li>
-                                                <li id="menu-item-66179" className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-66179"><a href="http://www.news4t.com/category/business/">Business</a></li>
-                                                <li id="menu-item-66180" className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-66180"><a href="http://www.news4t.com/category/education/">Education</a></li>
+                                                { catlist.length > 0  ? (
+                                                    catlist.map((c,i) =>(
+
+                                                        <li id={"menu-item-"+c.id} key={i} className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-66173">
+                                                            <Link to={'/'+c.id}>{c.name}</Link>
+                                                        </li>
+                                                    ))
+                                                    
+                                                ) : ('loading') }
                                             </ul>
+                                                
                                         </div>
                                     </div>
                                 </div>
@@ -78,7 +91,7 @@ class Header extends Component {
                             <form role="search" method="get" className="search-form" action="http://www.news4t.com/">
                                 <label>
                                     <span className="screen-reader-text">Search for:</span>
-                                    <input type="search" className="search-field" placeholder="Search &hellip;" value="" name="s" />
+                                    <input type="search" className="search-field" placeholder="Search &hellip;"  name="s" />
                                 </label>
                                 <input type="submit" className="search-submit" value="Search" /></form>
                         </div>

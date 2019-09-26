@@ -9,7 +9,7 @@ class Frontend extends Component {
     render() { 
         return ( 
             <React.Fragment> 
-                <div id="page" class="site">            
+                <div id="page" className="site">            
                     <Header/>
                         {this.props.children}
                     <Footer/>
